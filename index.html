@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>❤️ Feliz Dia dos Namorados ❤️</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-family:'Segoe UI',sans-serif;
+
+    background:
+    radial-gradient(circle at top,
+    #7a0028 0%,
+    #2d0014 45%,
+    #000 100%);
+
+    color:white;
+}
+
+/* Fundo animado */
+
+.bg-glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.18;
+    pointer-events:none;
+}
+
+.glow1{
+    width:350px;
+    height:350px;
+    background:#ff0055;
+    animation:move1 16s infinite alternate ease-in-out;
+}
+
+.glow2{
+    width:400px;
+    height:400px;
+    background:#ff3d7a;
+    animation:move2 20s infinite alternate ease-in-out;
+}
+
+.glow3{
+    width:250px;
+    height:250px;
+    background:#ff9bc0;
+    animation:move3 14s infinite alternate ease-in-out;
+}
+
+@keyframes move1{
+    from{transform:translate(-150px,-100px);}
+    to{transform:translate(250px,180px);}
+}
+
+@keyframes move2{
+    from{transform:translate(250px,-100px);}
+    to{transform:translate(-200px,220px);}
+}
+
+@keyframes move3{
+    from{transform:translate(-50px,250px);}
+    to{transform:translate(250px,-120px);}
+}
+
+/* Conteúdo */
+
+.container{
+    position:relative;
+    z-index:10;
+    text-align:center;
+    padding:20px;
+}
+
+#hint{
+    margin-bottom:25px;
+    opacity:.85;
+    font-size:1rem;
+}
+
+#heart{
+    font-size:7rem;
+    cursor:pointer;
+    user-select:none;
+
+    animation:pulse 1.3s infinite;
+
+    filter:
+    drop-shadow(0 0 15px rgba(255,0,90,.8))
+    drop-shadow(0 0 40px rgba(255,0,90,.4));
+}
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.15);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+}
+
+#surprise{
+    display:none;
+    opacity:0;
+}
+
+.show{
+    display:block !important;
+    animation:fadeIn 2s forwards;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+#surprise img{
+
+    width:85vw;
+    max-width:350px;
+
+    border-radius:20px;
+
+    border:2px solid rgba(255,255,255,.2);
+
+    box-shadow:
+    0 0 30px rgba(255,0,90,.4);
+
+    margin-bottom:20px;
+}
+
+#surprise h1{
+
+    font-size:2rem;
+    margin-bottom:10px;
+
+    text-shadow:
+    0 0 15px rgba(255,0,100,.6);
+}
+
+.sub{
+
+    font-size:.62rem;
+    opacity:.65;
+
+    font-style:italic;
+
+    line-height:1.5;
+    max-width:320px;
+    margin:auto;
+
+    margin-top:8px;
+}
+
+
+/* Estrelas */
+
+.star{
+
+    position:absolute;
+    color:white;
+    opacity:.15;
+
+    animation:twinkle linear infinite;
+}
+
+@keyframes twinkle{
+
+    50%{
+        opacity:.6;
+    }
+}
+
+/* Mini corações explosão */
+
+.mini-heart{
+
+    position:absolute;
+    pointer-events:none;
+    font-size:1.5rem;
+
+    animation:explode 2s forwards;
+}
+
+@keyframes explode{
+
+    from{
+
+        opacity:1;
+
+        transform:
+        translate(0,0)
+        scale(1);
+    }
+
+    to{
+
+        opacity:0;
+
+        transform:
+        translate(var(--x),var(--y))
+        scale(.2);
+    }
+}
+
+/* Corações flutuando */
+
+.floating-heart{
+
+    position:absolute;
+
+    bottom:-50px;
+
+    color:rgba(255,255,255,.15);
+
+    pointer-events:none;
+
+    animation:rise linear forwards;
+}
+
+@keyframes rise{
+
+    0%{
+
+        opacity:0;
+
+        transform:
+        translateY(0)
+        rotate(0deg);
+    }
+
+    10%{
+        opacity:.4;
+    }
+
+    100%{
+
+        opacity:0;
+
+        transform:
+        translateY(-120vh)
+        rotate(360deg);
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg-glow glow1"></div>
+<div class="bg-glow glow2"></div>
+<div class="bg-glow glow3"></div>
+
+<div class="container">
+
+    <p id="hint">Clique no coração ❤️</p>
+
+    <div id="heart">❤️</div>
+
+    <div id="surprise">
+
+        <!-- TROQUE PELO NOME DA SUA FOTO -->
+        <img src="foto.jpg" alt="Desenho">
+
+        <h1>Feliz Dia dos Namorados ❤️</h1>
+
+        <p class="sub">
+            Por mais que ainda não seja oficial ,<br>
+            mas já estou preparando os papéis do casamento😉.
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+const heart = document.getElementById("heart");
+const hint = document.getElementById("hint");
+const surprise = document.getElementById("surprise");
+
+let clicks = 0;
+const target = 10;
+
+/* estrelas */
+
+for(let i=0;i<60;i++){
+
+    const star = document.createElement("div");
+
+    star.className = "star";
+    star.innerHTML = "✦";
+
+    star.style.left = Math.random()*100+"vw";
+    star.style.top = Math.random()*100+"vh";
+
+    star.style.fontSize =
+    (Math.random()*10+6)+"px";
+
+    star.style.animationDuration =
+    (Math.random()*4+2)+"s";
+
+    document.body.appendChild(star);
+}
+
+/* corações subindo */
+
+setInterval(()=>{
+
+    const h = document.createElement("div");
+
+    h.className = "floating-heart";
+    h.innerHTML = "❤️";
+
+    h.style.left =
+    Math.random()*window.innerWidth+"px";
+
+    h.style.fontSize =
+    (Math.random()*20+10)+"px";
+
+    h.style.animationDuration =
+    (Math.random()*4+6)+"s";
+
+    document.body.appendChild(h);
+
+    setTimeout(()=>{
+        h.remove();
+    },10000);
+
+},700);
+
+heart.addEventListener("click",()=>{
+
+    clicks++;
+
+    if(clicks===5){
+
+        hint.innerHTML =
+        "Só mais um pouquinho... ❤️";
+    }
+
+    if(clicks>=target){
+
+        explode();
+
+        heart.style.display="none";
+        hint.style.display="none";
+
+        setTimeout(()=>{
+
+            surprise.classList.add("show");
+
+        },700);
+    }
+});
+
+function explode(){
+
+    const centerX = window.innerWidth/2;
+    const centerY = window.innerHeight/2;
+
+    for(let i=0;i<80;i++){
+
+        const mini =
+        document.createElement("div");
+
+        mini.className = "mini-heart";
+        mini.innerHTML = "❤️";
+
+        mini.style.left = centerX+"px";
+        mini.style.top = centerY+"px";
+
+        mini.style.setProperty(
+        "--x",
+        (Math.random()*1200-600)+"px"
+        );
+
+        mini.style.setProperty(
+        "--y",
+        (Math.random()*1200-600)+"px"
+        );
+
+        document.body.appendChild(mini);
+
+        setTimeout(()=>{
+            mini.remove();
+        },2000);
+    }
+}
+
+</script>
+
+</body>
+</html>
