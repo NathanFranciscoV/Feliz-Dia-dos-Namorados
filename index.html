@@ -12,6 +12,8 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
+
+    -webkit-tap-highlight-color: transparent;
 }
 
 body{
@@ -100,12 +102,17 @@ body{
     cursor:pointer;
     user-select:none;
 
+    outline:none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+
     animation:pulse 1.3s infinite;
 
     filter:
     drop-shadow(0 0 15px rgba(255,0,90,.8))
     drop-shadow(0 0 40px rgba(255,0,90,.4));
 }
+
 
 @keyframes pulse{
 
@@ -406,19 +413,37 @@ heart.addEventListener("click",()=>{
         "Só mais um pouquinho... ❤️";
     }
 
-    if(clicks>=target){
+   if(clicks>=target){
 
-        explode();
+    explode();
 
-        heart.style.display="none";
-        hint.style.display="none";
+    heart.style.display="none";
+    hint.style.display="none";
 
-        setTimeout(()=>{
+    music.volume = 0;
+    music.play().catch(err => console.log(err));
 
-            surprise.classList.add("show");
+    let volume = 0;
 
-        },700);
-    }
+    const fade = setInterval(()=>{
+
+        volume += 0.02;
+
+        if(volume >= 0.4){
+            volume = 0.4;
+            clearInterval(fade);
+        }
+
+        music.volume = volume;
+
+    },200);
+
+    setTimeout(()=>{
+
+        surprise.classList.add("show");
+
+    },700);
+}
 });
 
 function explode(){
