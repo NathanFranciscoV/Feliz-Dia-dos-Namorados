@@ -376,35 +376,6 @@ heart.addEventListener("click",()=>{
 
     clicks++;
 
-    if(!musicStarted){
-
-    musicStarted = true;
-
-    music.volume = 0;
-
-    music.play().then(()=>{
-
-        let volume = 0;
-
-        const fade = setInterval(()=>{
-
-            volume += 0.02;
-
-            if(volume >= 0.4){
-
-                volume = 0.4;
-                clearInterval(fade);
-            }
-
-            music.volume = volume;
-
-        },200);
-
-    }).catch(err=>{
-        console.log(err);
-    });
-}
-
     if(clicks===5){
 
         hint.innerHTML =
